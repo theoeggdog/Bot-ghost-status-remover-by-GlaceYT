@@ -5,15 +5,13 @@
  ██╔══██╗░░░██║░░░░██╔██╗░          
  ██║░░██║░░░██║░░░██╔╝╚██╗          
  ╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝          
-  GIT : https://github.com/RTX-GAMINGG/Bot-ghost-status-remover-by-RTX
+GIT : https://github.com/RTX-GAMINGG/Bot-ghost-status-remover-by-RTX
   DISCORD SERVER : https://discord.gg/FUEHs7RCqz
   YOUTUBE : https://www.youtube.com/channel/UCPbAvYWBgnYhliJa1BIrv0A
  * **********************************************
  *   Code by RTX GAMING
  * **********************************************
  */
-
-
 
 const { Client, GatewayIntentBits, ActivityType, TextChannel } = require('discord.js');
 require('dotenv').config();
@@ -35,11 +33,8 @@ app.listen(port, () => {
   console.log(`🔗 Powered By RTX`);
 });
 
+const statusMessages = ["Playing with scripts"]; // Set the status to "Playing with scripts"
 
-const statusMessages = ["PLAYING","MUSIC"];
-
-
-let currentIndex = 0;
 const channelId = '';
 
 async function login() {
@@ -67,27 +62,19 @@ GIT : https://github.com/RTX-GAMINGG/Bot-ghost-status-remover-by-RTX
  * **********************************************
  */
 
-
 function updateStatusAndSendMessages() {
-  const currentStatus = statusMessages[currentIndex];
-  const nextStatus = statusMessages[(currentIndex + 1) % statusMessages.length];
+  const currentStatus = statusMessages[0]; // Always use "Playing with scripts" as the status
 
   client.user.setPresence({
-    activities: [{ name: currentStatus, type: ActivityType.Custom}],
+    activities: [{ name: currentStatus, type: ActivityType.Playing}], // Set status to "Playing with scripts"
     status: 'dnd',
   });
 
-  
   const textChannel = client.channels.cache.get(channelId);
 
   if (textChannel instanceof TextChannel) {
-   
     textChannel.send(`Bot status is: ${currentStatus}`);
-  } else {
-
   }
-
-  currentIndex = (currentIndex + 1) % statusMessages.length;
 }
 
 client.once('ready', () => {
@@ -95,10 +82,9 @@ client.once('ready', () => {
   console.log(`\x1b[36m%s\x1b[0m`, `|    ✨HAPPY NEW YEAR MY DEAR FAMILY`);
   console.log(`\x1b[36m%s\x1b[0m`, `|    ❤️WELCOME TO 2024`);
   updateStatusAndSendMessages();
-
   setInterval(() => {
-    updateStatusAndSendMessages();
-  }, 10000);
+    updateStatusAndSendMessages(); // No need to cycle status
+  }, 10000); // Update every 10 seconds (or adjust if desired)
 });
 
 login();
