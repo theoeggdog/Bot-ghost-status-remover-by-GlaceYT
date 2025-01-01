@@ -33,7 +33,7 @@ app.listen(port, () => {
   console.log(`🔗 Powered By RTX`);
 });
 
-const statusMessages = [" with scripts"]; // Set the status to "Playing with scripts"
+const statusMessages = [" with scripts", " did you really think i was made with that"]; // Set the status to "Playing with scripts"
 
 const channelId = '';
 
